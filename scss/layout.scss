@@ -1,0 +1,869 @@
+/**
+ * Layout stylesheet.
+ *
+ * The general rule is that the styles from here will not be needed for the CMS editor.
+ * Styles related to content editing should go into typography.[s]css.
+ */
+
+
+ //* *** ATTENTION SCSS DEVELOPER ***
+ //*
+ //* If you are working with SCSS, please do not import other top-level 
+ //* stylesheets here such as typography.scss. We want to be able to generate 
+ //* clean CSS for the third-party dev to work with directly, without duplication 
+ //* of css in the generated files!
+ //*
+
+
+// Import needed scss files. Bootstrap files require the bootstrap module in the themes directory
+@import "compass/support"; //import an external compass library for IE9 SVG gradient support 
+$experimental-support-for-svg: true; //for IE9 SVG gradient support 
+
+@import 'bootstrap_config/bootstrap.scss'; //Core bootstrap layout components
+/* @import 'components/forms'; */ //form specific scss
+/* @import 'components/navigation'; */ //navigation components
+/* @import 'components/mobile'; */ //mobile specific adjustments
+/* @import 'components/sitemap'; */ //sitemap specific scss
+/* @import 'components/results'; */ //search results specific scss
+
+
+/*****************************
+LAYOUT
+******************************/
+
+
+$theme : #019c70;
+$font-headline : 'Oxygen', Helvetica,sans-serif;
+$font-normal : 'Lato', Helvetica,sans-serif;
+
+.aligncenter  {text-align: center}
+.alignleft    {text-align: left}
+.alignright   {text-align: right}
+
+body {
+  font-family: $font-normal;
+  color: #555;
+  font-size:13px;
+  a {
+    color: $theme;
+    &:hover {
+      color: darken($theme, 10%);
+    }
+  }
+  .btn {
+    background: $theme;
+    border-radius: 3px;
+    border:none;
+    color: #fff;
+    color: rgba(255,255,255,1);
+    text-shadow:none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding:13px 40px;
+    box-shadow:none;
+    -webkit-transition: all 0.3s linear;
+    &.btn-inverse {
+      background: #333;
+      &:hover {
+        background: #222;
+      }
+    }
+    &:hover {
+      padding:13px 50px;
+      background: darken($theme, 3%);
+      color:#fff;
+      -webkit-transition: all 0.1s linear;
+    }
+    &.btn-block {
+      &:hover {
+        width:110%;
+        margin-left:-5%;
+        position: relative;
+      }
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-headline;
+    font-weight: 400;
+  }
+  p {
+    line-height: 1.7;
+  }
+  hr {margin:50px 0;}
+  > header {
+    background: #333;
+    padding:50px 0;
+    color: #fff;
+    color: rgba(255,255,255,0.8);
+    #branding {
+      margin-bottom: 30px;
+      .btn {
+        display: none;
+      }
+      h1.brand {
+        margin:0;
+        text-align: center;
+        a {
+          color: #fff;
+          display: block;
+          -webkit-transition:color 0.5s ease-in;  
+          span {
+            display: inline-block;
+            -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                filter: FlipH;
+                -ms-filter: "FlipH";
+                color: $theme;
+                -webkit-transition:color 0.5s ease-in;  
+          }
+          &:hover {
+            color:$theme;
+            text-decoration: none;
+            -webkit-transition:color 0.2s ease-in;  
+
+            span {
+              color:#fff;
+              -webkit-transition:color 0.2s ease-in;  
+            }
+          }
+        }
+        &.custom {
+          a {
+            width:233px;
+            height:75px;
+            margin:0 auto;
+            background: url(../../img/dummy/branding.png);
+            text-indent: -9999px;
+          }
+        }
+      }
+    }
+    #navigation {
+      
+      text-align: center;
+      ul.nav {
+        position: relative;
+        text-align: center;
+        margin:0;
+        > li {
+          display: inline-block;
+          a {
+            color: #ccc;
+            text-transform: uppercase;
+            margin:0 10px;
+            letter-spacing: 1px;
+            -webkit-transition:color 0.3s ease-in;  
+            &:hover {
+              background: none;
+              color: $theme;
+              border-bottom: $theme solid 1px;
+              -webkit-transition:color 0.1s ease-in;  
+            }
+            &:focus {
+              background: none;
+            }
+            .caret {
+              border-top-color: $theme;
+              border-bottom-color: $theme;
+              margin-top: 9px;
+            }
+          }
+          &.active {
+            a {
+              border-bottom: #999 solid 1px;
+              &:hover {
+                border-color: $theme;
+              }
+            }
+          }
+
+          &.dropdown {
+            a {
+              &:hover {
+                border:none;
+              }
+            }
+          }
+
+          > ul {
+            background: #222;
+            border:none;
+            text-align: left;
+            border-radius: 2px;
+            padding:0;
+            margin-top: 15px;
+
+            &:after {
+              bottom: 100%;
+              border: solid transparent;
+              content: " ";
+              height: 0;
+              width: 0;
+              position: absolute;
+              pointer-events: none;
+              border-color: rgba(34, 34, 34, 0);
+              border-bottom-color: #222;
+              border-width: 15px;
+              left: 30px;
+              margin-left: -15px;
+            }
+
+            > li {
+              a {
+                text-transform: none;
+                padding:10px 15px;
+                margin:0;
+                width:200px;
+                &:hover {
+                  background: $theme;
+                  color: #fff;
+                  border:none;
+                }
+              }
+              & + li a {
+                border-top:#2a2a2a solid 1px;
+                &:hover {
+                  border-top:$theme solid 1px;
+                }
+              }
+
+              &.active {
+                a {background: $theme;}
+              }
+            }
+          }
+        }
+      }
+    }
+    #featured {
+      margin-top: 60px;
+      .carousel {
+        .carousel-inner {
+          margin-bottom: 30px;
+          > .item {
+            h1, h2, h3, h4, h5, h6 {
+              color: lighten($theme, 10%);
+            }
+            p {
+              line-height: 1.7;
+              font-size: 300;
+              margin-bottom: 30px;
+
+              &.lead {
+                line-height: 1.3;
+                margin-top: 15px;
+                color: rgba(255,255,255,0.9);
+                & + p {
+                  margin-top: -20px;
+                }
+              }
+            }
+            img {
+              &.lead {
+                margin-bottom: 30px;
+              }
+            }
+          }
+        }
+        .carousel-control {
+          border:none;
+          width: auto;
+          height: auto;
+          font-size: 30px;
+          line-height: 1;
+          padding:4px 15px;
+        }
+        .carousel-indicators {
+          position: relative;
+          top:auto;
+          right:auto;
+          text-align: center;
+          li {
+            float: none;
+            display: inline-block;
+
+            &.active {
+              background: $theme;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #clients {
+    padding:50px 0;
+    ul.client-list {
+      margin: 0;
+      text-align: center;
+      li {
+        display: inline-block;
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+
+  #features {
+    padding:50px 0;
+    background: $theme;
+    color: #fff;
+    color: rgba(255,255,255,0.8);
+
+    .row > header {
+      margin-bottom: 20px;
+    }
+    h1, h2, h3, h4, h5, h6  {
+      color: #fff;
+    }
+    img.lead {
+      margin-bottom: 20px;
+    }
+    article.item {
+      &:hover {
+        img {
+          -webkit-transform:rotate(360deg);
+          -webkit-transition:0.5s ease-in;  
+        }
+      }
+    }
+  }
+
+  #content {
+    padding: 70px 0;
+  }
+  .carousel-product {
+    margin:0 50px;
+    .carousel-indicators {
+      text-align: center;
+      position: relative;
+      top:auto;
+      right:auto;
+      margin-bottom: 20px;
+      li {
+        background: #bbb;
+        float: none;
+        display: inline-block;
+        &.active {
+          background: #333;
+        }
+      }
+    }
+    .carousel-control {
+      background: none;
+      border:none;
+      color: #bbb;
+      left:-55px;
+      &.right {
+        right:-55px;
+        left: auto;
+      }
+    }
+  }
+  .product-listing {
+    margin: 0;
+    .product {
+      margin-bottom: 50px;
+      img {
+        margin-bottom: 20px;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        margin: 0;
+        line-height: 1.1;
+      }
+      .pricing {
+        background: $theme;
+        display: inline-block;
+        clear: both;
+        color: #fff;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-top: 3px;
+        margin-left: 10px;
+        padding: 5px 6px;
+        line-height: 1;
+        border-radius: 3px;
+      }
+      .rating {
+        &:hover {
+          color: $theme;
+        }
+      }
+      p.desc {
+        margin-top: 5px;
+      }
+      a.btn {
+        background: #bbb;
+        //color: #888;
+        i {
+          margin-right: 5px;
+          font-size: 16px;
+        }
+        &:hover {
+          background: $theme;
+          color: #fff
+        }
+      }
+    }
+  }
+  #cta {
+    background: #555;
+    padding:30px 0;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      border:none;
+      box-shadow:none;
+      padding:13px 20px;
+      height:auto;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin:0;
+    }
+  }
+
+  #page-intro {
+    background: $theme;
+    color: #fff;
+    padding: 30px 0;
+
+    h1 {}
+    p.lead {
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+  }
+
+  .form-horizontal {
+    .control-label {
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+  }
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    box-shadow: none;
+    border-radius: 2px;
+    padding:7px 10px;
+    font-weight: 300;
+
+    & + a.btn {
+      margin-top: 20px;
+    }
+    &:focus {
+      border:#777 solid 1px;
+      box-shadow: none;
+    }
+  }
+
+  .blog-list {
+    li.blog-item {
+      ul.blog-meta {
+        li {
+          display: inline-block;
+          margin-right: 10px;
+          color: #aaa;
+          font-weight: 300;
+
+          a {
+            color: #aaa;
+            &:hover {
+              color: $theme;
+            }
+          }
+          i {margin-right: 3px;}
+        }
+      }
+      h1.blog-title {
+
+      }
+      p.lead {
+        & + p {
+          margin-top: -10px;
+        }
+      }
+      a.btn {
+        margin-top: 10px;
+      }
+
+      &+ li.blog-item {
+        margin-top: 50px;
+        padding-top: 50px;
+        border-top: #eee solid 1px;
+      }
+    }
+
+    & + .pagination {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: #eee solid 1px;
+    }
+  }
+
+  .widget {
+    margin-bottom: 40px;
+    border:#ccc solid 1px;
+    padding:20px;
+    border-radius: 2px;
+    .widget-title {
+      margin-top: 0;
+    }
+    .widget-content {
+
+    }
+  }
+
+  .product-features {
+    margin-bottom: 30px;
+    li {
+      margin-bottom: 5px;
+      list-style-type: square;
+      font-size: 15px;
+    }
+  }
+  .product-actions {
+    background: #f5f5f5;
+    padding:15px;
+    border-radius: 3px;
+
+    .pricing {
+      color: #333;
+      text-align: center;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 3px;
+      h1 {
+        margin:0;
+      }
+    }
+  }
+  .comment-list {
+    li {
+      margin-bottom: 15px;
+      img.avatar {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+      }
+      h4 {
+        line-height: 1;
+        margin-top: 0;
+        color: #333;
+        a {
+          color: #333;
+          &:hover {
+            color: $theme;
+          }
+        }
+      }
+      p {
+        line-height: 1.5;
+      }
+
+      > ul {
+        margin: 30px 0 0 100px;
+
+        > li {
+          margin-bottom: 25px;
+        }
+      }
+    }
+  }
+  .about-people {
+    .row-fluid, .row {
+      margin-bottom: 20px;
+    }
+    .item {
+      margin-top: 0;
+      img.avatar {
+        width:80px;
+        height: 80px;
+        margin-right: 15px;
+      }
+      h4 {
+        line-height: 1;
+        margin: 0;
+      }
+      p {
+        line-height: 1.5;
+      }
+    }
+  }
+  > footer {
+    background: #333;
+    padding:50px 0;
+    color: #aaa;
+    letter-spacing: 1px;
+    font-weight: 300;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ccc;
+    }
+    hr {
+      border-color: #444;
+      border-bottom: none;
+    }
+    p {
+      line-height: 1.5;
+    }
+
+    a {
+      color: #aaa;
+      -webkit-transition:color 0.3s ease-in;  
+      &:hover {
+        color: $theme;
+        -webkit-transition:color 0.1s ease-in;
+      }
+    }
+
+    h1.brand {
+      margin:0;
+      font-size: 24px;
+      line-height: 1;
+      a {
+        color: #fff;
+        display: block;
+        -webkit-transition:color 0.5s ease-in;  
+        span {
+          display: inline-block;
+          -moz-transform: scaleX(-1);
+              -o-transform: scaleX(-1);
+              -webkit-transform: scaleX(-1);
+              transform: scaleX(-1);
+              filter: FlipH;
+              -ms-filter: "FlipH";
+              color: $theme;
+              -webkit-transition:color 0.5s ease-in;  
+        }
+        &:hover {
+          color:$theme;
+          text-decoration: none;
+          -webkit-transition:color 0.2s ease-in;  
+
+          span {
+            color:#fff;
+            -webkit-transition:color 0.2s ease-in;  
+          }
+        }
+      }
+      &.custom {
+        a {
+          width:233px;
+          height:75px;
+          margin:0 auto;
+          background: url(../../img/dummy/branding.png);
+          text-indent: -9999px;
+        }
+      }
+    }
+
+    ul.nav {
+      position: relative;
+      margin:0;
+      li {
+        display: inline-block;
+        a {
+          color: #ccc;
+          text-transform: uppercase;
+          margin:0 10px;
+          letter-spacing: 1px;
+          line-height: 24px;
+          
+          &:hover {
+            background: none;
+            color: $theme;
+            border-bottom: $theme solid 1px;
+          }
+
+        }
+        &.active {
+          a {
+            border-bottom: #999 solid 1px;
+            &:hover {
+              border-color: $theme;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------------------*/
+/* Landscape phone to portrait tablet */
+/*-------------------------------------------------------------------------*/
+@media (max-width: 767px) {
+  body {
+    padding:0;
+    > header {
+      padding:20px;
+    }
+    > section {
+      padding:20px !important;
+
+      &#page-intro {
+        text-align: center;
+        p {text-align: center;}
+      }
+    }
+    > footer {
+      padding:20px;
+    }
+
+    p.lead {font-size: 16px;}
+    > header {
+      #branding {
+        margin: 0 0 10px;
+        .btn, .btn:hover, .btn:active, .btn.active {
+          padding:4px 12px;
+          background: $theme;
+          color: #fff;
+          position: absolute;
+          top:25px;
+          right:20px;
+          display: block;
+        }
+        h1.brand {
+          text-align: left;
+        }
+      }
+      #navigation {
+        margin: 0 -20px;
+        ul.nav {
+          background: #000;
+          li {
+            display: block;
+            text-align: left;
+            padding: 5px 15px;
+
+            &:first-child {
+              margin-top:10px;
+            }
+            &:last-child {
+              margin-bottom: 10px;
+            }
+
+            a {
+              &:hover {
+                border:none;
+              }
+            }
+
+            &.active {
+              background: $theme;
+              a {
+                border-bottom: none;
+                &:hover {
+                  color: #fff;
+                }
+              }
+            }
+
+            > ul.dropdown-menu {
+              display: block;
+              width:auto;
+              > li {
+                padding:0;
+                a {
+                  display: block;
+                  width:auto;
+                }
+              }
+            }
+          }
+        }
+      }
+      #featured {
+        margin-top: 15px;
+
+        .carousel {
+          margin-left: 30px;
+          margin-right: 30px;
+          .item {
+            h1 {
+              font-size: 24px;
+              line-height: 1.2;
+            }
+          }
+          .carousel-control {
+            left:-40px;
+            font-size: 20px;
+            padding:4px 11px;
+            &.right {
+              right:-40px;
+              left:auto;
+            }
+          }
+        }
+      }
+    }
+    #features {
+      .item {
+        text-align: left;
+        clear: both;
+        img {
+          float: left;
+          width: 90px;
+          height: auto;
+        }
+        h3 {
+          margin-left: 120px;
+          margin-bottom: 0;
+        }
+        p {
+          margin-left: 120px;
+        }
+      }
+    }
+    .product-listing {
+      li.product {
+        img {
+          width:100px;
+          height: auto;
+          float: left;
+        }
+        h3, .rating, .desc {
+          margin-left: 115px;
+        }
+        .pricing {
+          float: none;
+          clear: none;
+          margin: 0 0 5px 15px;
+        }
+        .desc {line-height: 1.5;}
+      }
+    }
+    .about-people {
+      .row {margin-bottom: 0;}
+      .item {
+        margin-bottom: 15px;
+        .pull-left {
+          float: left;
+        }
+      }
+    }
+    .comment-list {
+      .item {
+        .pull-left {
+          float:left;
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------------------------------*/
+/* Landscape phones and down */
+/*-------------------------------------------------------------------------*/
+@media (max-width: 480px) {
+  body {
+    
+    
+  }
+}
