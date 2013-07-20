@@ -1,9 +1,9 @@
-Purchase is required for use of the produkt theme from http://bootstrapstyler.com/
+Purchase is required for use of this theme from http://bootstrapstyler.com/
 ==============================
 
 These files are to accompany silverstripe-ux/sass-twitter-bootstrap for development with SilverStripe CMS. (https://github.com/silverstripe-ux/sass-twitter-bootstrap/tree/2.3.2/js)
 
-Put both sass-twitter-bootstrap and product in your themes folder and rename "sass-twitter-bootstrap" to module_bootstrap
+Put both sass-twitter-bootstrap and theme1 in your themes folder and rename "sass-twitter-bootstrap" to module_bootstrap
 
 
 You should add something like this to page_controller within mysite/code/page.php for the javascript files you require:
